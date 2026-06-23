@@ -6,6 +6,11 @@ const Summary = () => {
   const [userName, setUserName] = useState("");
 const API_URL = import.meta.env.VITE_API_URL;
  useEffect(() => {
+   const params = new URLSearchParams(window.location.search);
+    const queryUsername = params.get("username");
+    if (queryUsername) {
+      setUserName(decodeURIComponent(queryUsername));
+    }
   const fetchUser = async () => {
     try {
       const res = await axios.get(

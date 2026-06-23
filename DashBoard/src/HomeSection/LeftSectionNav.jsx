@@ -44,6 +44,11 @@ const LeftSectionNav = () => {
   const API_URL = import.meta.env.VITE_API_URL;
   const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
  useEffect(() => {
+   const params = new URLSearchParams(window.location.search);
+    const queryUsername = params.get("username");
+    if (queryUsername) {
+      setUserName(decodeURIComponent(queryUsername));
+    }
   const fetchUser = async () => {
     try {
       const res =await axios.get(`${API_URL}/me`,
