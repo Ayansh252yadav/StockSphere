@@ -3,7 +3,7 @@ import HeroSighup from './HeroSighup'
 import InvestMentOption from './InvestMentOption'
 import Steps from './Steps'
 import Bebefits from './Bebefits'
-import FAQs from './faqs'
+import FAQs from './FAQs'
 import OpenAccount from '../OpenAccount'
 
 const signup = () => {

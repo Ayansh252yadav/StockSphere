@@ -10,12 +10,12 @@ const HeroSighup = () => {
   const [ password, setPassword ] = useState("");
   const [ response, setResponse ] = useState("");
   const navigate = useNavigate();
-
+  const API_URL = import.meta.env.VITE_API_URL;
   const handleSignUp = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:8080/signup", {
+      const res = await axios.post(`${API_URL}/signup`, {
         email,
         username,
         mobileNumber,

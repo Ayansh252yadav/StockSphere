@@ -10,10 +10,10 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+const API_URL = import.meta.env.VITE_API_URL;
     try {
       const res = await axios.post(
-        "http://localhost:8080/login",
+        `${API_URL}/login`,
         { email, password },
         { withCredentials: true }
       );
