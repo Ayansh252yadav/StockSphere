@@ -5,11 +5,11 @@ import { VerticalGraph } from './VerticalGraph';
 const Holdings = () => {
 
 const [allHoldings,setAllHoldings]=useState([]);
-
+const API_URL = import.meta.env.VITE_API_URL;
 useEffect(() => {
   const fetchHoldings = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/allHoldings");
+      const res =await axios.get(`${API_URL}/allHoldings`);
       console.log(res.data);
       setAllHoldings(res.data);
     } catch (err) {

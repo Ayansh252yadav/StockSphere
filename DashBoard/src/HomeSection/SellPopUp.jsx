@@ -7,13 +7,13 @@ const SellPopUp = ({ stock, onClose }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(stock?.price || 0);
   const [holdingsQty, setHoldingsQty] = useState(0);
-
+const API_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
   if (!stock?.name) return;   
 
   const fetchHoldings = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/holdings");
+      const res = await axios.get(`${API_URL}/holdings`);
 
       const found = res.data.find(h => h.name === stock.name);
       setHoldingsQty(found ? found.qty : 0);
@@ -34,7 +34,7 @@ const SellPopUp = ({ stock, onClose }) => {
         return;
       }
 
-      await axios.post("http://localhost:8080/newOrder", {
+      await axios.post(`${API_URL}/newOrder`, {
         name: stock.name,
         qty: stockQuantity,
         price: stock.price,

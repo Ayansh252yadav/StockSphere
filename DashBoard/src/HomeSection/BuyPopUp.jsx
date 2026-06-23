@@ -5,10 +5,10 @@ import axios from "axios";
 const BuyPopUp = ({ stock, onClose }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(stock?.price || 0);
-
+const API_URL = import.meta.env.VITE_API_URL;
   const handleButtonBuyClick = async () => {
     try {
-      const res = await axios.post("http://localhost:8080/newOrder", {
+      const res = await axios.post(`${API_URL}/newOrder`, {
         name: stock.name,
         qty: Number(stockQuantity),
         price: Number(stockQuantity) * Number(stock.price),

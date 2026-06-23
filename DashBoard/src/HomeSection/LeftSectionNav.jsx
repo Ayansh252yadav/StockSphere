@@ -41,12 +41,12 @@ const LeftSectionNav = () => {
 
 
   const [userName, setUserName] = useState("");
-
+  const API_URL = import.meta.env.VITE_API_URL;
+  const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
  useEffect(() => {
   const fetchUser = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:8080/me",
+      const res =await axios.get(`${API_URL}/me`,
         {
           withCredentials: true,
         }
@@ -82,7 +82,7 @@ const LeftSectionNav = () => {
               height: "40px",
               cursor: "pointer",
             }}
-           onClick={() => window.location.href = "http://localhost:5173"}
+           onClick={() => window.location.href = `${FRONTEND_URL}`}
           />
         </Box>
 
@@ -148,14 +148,14 @@ const LeftSectionNav = () => {
     handleClose();
     try {
       await axios.post(
-        "http://localhost:8080/logout",
+        `${API_URL}/logout`,
         {},
         { withCredentials: true }
       );
     } catch (err) {
       console.error("Logout error:", err);
     }
-    window.location.href = "http://localhost:5173/login";
+    window.location.href =`${FRONTEND_URL}/login`;
   }}
 >
   Logout

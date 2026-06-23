@@ -5,11 +5,11 @@ import axios from "axios";
 const Order = () => {
   const [allOrders, setAllOrders] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-
+const API_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await axios.get("http://localhost:8080/allOrders");
+        const res =await axios.get(`${API_URL}/allOrders`);
         setAllOrders(res.data);
       } catch (err) {
         console.log(err);

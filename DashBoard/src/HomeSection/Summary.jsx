@@ -4,12 +4,12 @@ import axios from "axios";
 
 const Summary = () => {
   const [userName, setUserName] = useState("");
-
+const API_URL = import.meta.env.VITE_API_URL;
  useEffect(() => {
   const fetchUser = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8080/me",
+        `${API_URL}/me`,
         {
           withCredentials: true,
         }
