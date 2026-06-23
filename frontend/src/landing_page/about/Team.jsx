@@ -1,5 +1,5 @@
 import React from 'react'
-import Unknown from "../../assets/unknown.jpg";
+import user from "../../assets/user.jpg";
 const Team = () => {
   return (
     <div className='px-30 py-15'>
@@ -8,7 +8,7 @@ const Team = () => {
       </div>
       <div className='flex justify-between gap-12 px-10 py-20'>
          <div className='w-1/2'>
-          <img className='w-100 h-100' src={Unknown} alt="" />
+          <img className='w-100 h-100' src={user} alt="" />
           <p className='max-wd-lg leading-7 text-gray-600 text-[20px] px-10'>Ayansh Yadav, Software Engineer</p>
           <p className='max-wd-lg leading-7 text-gray-600 text-[20px] px-10 mt-3'>Founder & Full-Stack Developer</p>
          </div>
