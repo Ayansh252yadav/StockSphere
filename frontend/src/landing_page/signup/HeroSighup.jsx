@@ -11,6 +11,7 @@ const HeroSighup = () => {
   const [ response, setResponse ] = useState("");
   const navigate = useNavigate();
   const API_URL = import.meta.env.VITE_API_URL;
+  const DASHBOARD_URL = import.meta.env.VITE_DASHBOARD_URL;
   const handleSignUp = async (e) => {
     e.preventDefault();
 
@@ -26,9 +27,9 @@ const HeroSighup = () => {
   });
       if (res.data.success) {
         setResponse("Signup successful");
-        window.location.href = `http://localhost:5174/?username=${encodeURIComponent(
-          res.data.user.username
-        )}`;
+       window.location.href = `${DASHBOARD_URL}/?username=${encodeURIComponent(
+  res.data.user.username
+)}`;
       } else {
         setResponse(res.data.message);
       }

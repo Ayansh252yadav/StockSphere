@@ -8,9 +8,11 @@ const Login = () => {
   const [response, setResponse] = useState("");
   const navigate = useNavigate();
 
+  const API_URL = import.meta.env.VITE_API_URL;
+  const DASHBOARD_URL = import.meta.env.VITE_DASHBOARD_URL;
+
   const handleLogin = async (e) => {
     e.preventDefault();
-const API_URL = import.meta.env.VITE_API_URL;
     try {
       const res = await axios.post(
         `${API_URL}/login`,
@@ -20,7 +22,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
       if (res.data.success) {
         setResponse("Login successful");
-        window.location.href = `http://localhost:5174/?username=${encodeURIComponent(
+        window.location.href = `${DASHBOARD_URL}/?username=${encodeURIComponent(
           res.data.user.username
         )}`;
       } else {
@@ -34,7 +36,6 @@ const API_URL = import.meta.env.VITE_API_URL;
 
   return (
     <div className="mt-24 max-w-7xl mx-auto px-6">
-      {/* Heading */}
       <div className="grid place-items-center text-center mb-16">
         <h1 className="text-4xl font-semibold text-gray-600">
           Login to your account
@@ -44,7 +45,6 @@ const API_URL = import.meta.env.VITE_API_URL;
         </p>
       </div>
 
-      {/* Form */}
       <div className="grid place-items-center">
         <form onSubmit={handleLogin} className="w-full max-w-md">
           <div className="bg-white shadow-lg rounded-xl p-8 border border-gray-200">
@@ -57,7 +57,6 @@ const API_URL = import.meta.env.VITE_API_URL;
             </p>
 
             <div className="space-y-5">
-              {/* Email */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Email Address
@@ -72,7 +71,6 @@ const API_URL = import.meta.env.VITE_API_URL;
                 />
               </div>
 
-              {/* Password */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Password
@@ -87,12 +85,10 @@ const API_URL = import.meta.env.VITE_API_URL;
                 />
               </div>
 
-              {/* Error/Success Message */}
               {response && (
                 <p className="text-red-500 text-sm">{response}</p>
               )}
 
-              {/* Submit */}
               <button
                 type="submit"
                 className="w-full bg-blue-600 text-white py-3 cursor-pointer rounded-lg font-medium hover:bg-blue-700 transition active:scale-95"
