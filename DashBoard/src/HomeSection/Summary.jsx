@@ -3,14 +3,20 @@ import { Clock, Briefcase } from "lucide-react";
 import axios from "axios";
 
 const Summary = () => {
-  const [userName, setUserName] = useState("");
+ const [userName, setUserName] = useState(
+  () => localStorage.getItem("userName") || "" 
+);
 const API_URL = import.meta.env.VITE_API_URL;
  useEffect(() => {
    const params = new URLSearchParams(window.location.search);
     const queryUsername = params.get("username");
-    if (queryUsername) {
-      setUserName(decodeURIComponent(queryUsername));
-    }
+     if (queryUsername) {
+    const decoded = decodeURIComponent(queryUsername);
+    setUserName(decoded);
+    localStorage.setItem("userName", decoded); 
+    return; 
+  }
+   if (localStorage.getItem("userName")) return;
   const fetchUser = async () => {
     try {
       const res = await axios.get(
@@ -21,7 +27,7 @@ const API_URL = import.meta.env.VITE_API_URL;
       );
 
       setUserName(res.data.username);
-      console.log(userName);
+       localStorage.setItem("userName", res.data.username);
     } catch (err) {
       console.log(err);
     }
